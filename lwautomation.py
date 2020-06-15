@@ -50,6 +50,10 @@ class LWAutomation:
         with open(script_path, "w") as file:
             file.write(result)
 
+    def power_up(self, n):
+        for _ in range(n):
+            self._relative_click(765, 415, 30, 1, 2)
+
     def _sleep(self, min, max):
         self._result.append(f"randsleep({min}, {max})")
 
