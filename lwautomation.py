@@ -76,9 +76,10 @@ class LWAutomation:
     def _sleep(self, min, max):
         self._result.append(f"randsleep({min}, {max})")
 
-    def end_turn(self, max_attacks_expected=0, max_spells_expected=0):
-        min = (self._attacks_this_turn + max_attacks_expected) * 6  # wait for all attacks
-        min += (self._spells_this_turn + max_spells_expected) * 12  # wait for all spells
+    def end_turn(self, max_enemy_attacks=None, max_enemy_spells=3):
+
+        min = (self._attacks_this_turn + max_enemy_attacks) * 6  # wait for all attacks
+        min += (self._spells_this_turn + max_enemy_spells) * 12  # wait for all spells
         max = min * 1.2
         self._sleep(min, max)
 
