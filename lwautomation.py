@@ -18,7 +18,7 @@ class LWAutomation:
 
     def _translate_coords(self, x, y, radius):
         return (x * self._screen_width / _mesurements_taken_x,
-                y * self._screen_heigth / _mesurements_taken_y,
+                (y) * self._screen_heigth / _mesurements_taken_y,
                 radius * self._screen_width / _mesurements_taken_x)
 
     def _relative_click(self, x, y, radius, min_time, max_time):
@@ -26,18 +26,18 @@ class LWAutomation:
         self._click(x, y, radius, min_time, max_time)
 
     def _open_spell_menu(self):
-        self._relative_click(47, 339, 10, 1, 2)
+        self._relative_click(47, 339, 15, 1, 2)
 
     def use_spellcard(self, spellcard_num: int):
         self._open_spell_menu()
         self._spells_this_turn += 1
         x, y = _spell_card_points_coords[spellcard_num]
-        self._relative_click(x, y, 30, 1, 2)
+        self._relative_click(x, y, 40, 1, 2)
 
     def use_attack(self, attack_num: int):
         self._attacks_this_turn += 1
         x, y = _attack_coords[attack_num]
-        self._relative_click(x, y, 30, 1, 2)
+        self._relative_click(x, y, 40, 1, 2)
 
     def _format_output_string(self):
         res = header.format(self._title)
@@ -58,8 +58,8 @@ class LWAutomation:
         self._result.append(f"randsleep({min}, {max})")
 
     def end_turn(self, max_attacks_expected=0, max_spells_expected=0):
-        min = (self._attacks_this_turn + max_attacks_expected) * 4  # wait for all attacks
-        min += (self._spells_this_turn + max_spells_expected) * 10  # wait for all spells
+        min = (self._attacks_this_turn + max_attacks_expected) * 6  # wait for all attacks
+        min += (self._spells_this_turn + max_spells_expected) * 12  # wait for all spells
         max = min * 1.2
         self._sleep(min, max)
 
@@ -98,25 +98,23 @@ _spell_card_points_coords = [(155, 273),
                              (585, 170),
                              (725, 160)
                              ]
-_attack_coords = [(240, 460),
-                  (550, 460)]
-
+_attack_coords = [(240, 430),
+                  (550, 430)]
+_skills = [144, 208, 276, 390, 457, 525, 640, 706, 775]
 header = """#NoEnv
 ; #Warn
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 RRClick(pointx, pointy, radius)
 {{
-    ranmin := pointx-radius
-    ranmax := pointx+radius
-    Random, OutX, %ranmin%, %ranmax%
-    VarY := (radius**2-(OutX-pointx)**2)**(1/2)+pointy
-    VarY := Round(varY)
-    YDist := VarY-PointY
-    YDist := 2*YDist
-    Random, Subval, 0, %Ydist%
-    OutY :=PointY-Subval
-    ControlClick, {0} Left, 1,  x%OutX% y%OutY% NA
+    double_rad := radius * radius
+    Random, rad, 0, %double_rad%
+    Random, Angle, 0, 6
+    
+    rad := Sqrt(rad)
+    OutX := Sin(Angle) * rad + pointx
+    OutY := Cos(Angle) * rad + pointy
+    ControlClick, {},, Left, 1,  x%OutX% y%OutY% NA
     Sleep, 10
 }}
 randsleep(min, max)
