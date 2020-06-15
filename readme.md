@@ -40,6 +40,7 @@ To run this script you should do the following:
 1. Turn on skill animation skipping(when in battle in menu)
 
 ![](readme_pics/skill_skip.jpg)
+
 2. Set the emu window at the size you want and measure it's width and height in 
 pixels with borders. To run the script without problems, you have to always keep 
 the window at the measured size.
