@@ -46,6 +46,15 @@ class LWAutomation:
         with open(script_path, "w") as file:
             file.write(result)
 
+    def _sleep(self, min, max):
+        self._result.append(f"randsleep({min}, {max})")
+
+    def end_turn(self, max_attacks_expected=0, max_spells_expected=0):
+        min = (self._attacks_this_turn + max_attacks_expected) * 4  # wait for all attacks
+        min += (self._spells_this_turn + max_spells_expected) * 10  # wait for all spells
+        max = min * 1.2
+        self._sleep(min, max)
+
 
 _mesurements_taken_x = 960.
 _mesurements_taken_y = 550.
