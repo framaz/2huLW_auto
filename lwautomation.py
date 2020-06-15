@@ -52,7 +52,26 @@ class LWAutomation:
 
     def power_up(self, n):
         for _ in range(n):
-            self._relative_click(765, 415, 30, 1, 2)
+            self._relative_click(765, 415, 40, 1, 2)
+
+    def graze(self, n):
+        for _ in range(n):
+            self._relative_click(825, 290, 40, 1, 2)
+
+    def use_skills(self, *args):
+        self._relative_click(875, 380, 10, 1, 2)
+        for arg in args:
+            self._relative_click(_skills[arg], 430, 10, 1, 2)
+            self._relative_click(555, 400, 10, 1, 2)
+        self._relative_click(875, 380, 10, 2, 3)
+
+    def restart_after_battle(self):
+        self._sleep(5, 10)
+        self._relative_click(130, 470, 10, 3, 4)
+        self._relative_click(130, 470, 10, 5, 10)
+
+    def swap_char(self):
+        self._relative_click(805, 51, 10, 4, 6)
 
     def _sleep(self, min, max):
         self._result.append(f"randsleep({min}, {max})")
