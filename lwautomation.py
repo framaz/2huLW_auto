@@ -1,12 +1,10 @@
 class LWAutomation:
     def __init__(self, title: str, screen_width: int,
-                 screen_heigth: int, script_path: str = "lwauto.ahk"):
+                 screen_heigth: int):
         self._title = title
         self._screen_width = screen_width
         self._screen_heigth = screen_heigth
-        self._script_path = script_path
         self._result = []
-        self._result.append(header.format(title))
         self._spells_this_turn = 0
         self._attacks_this_turn = 0
 
@@ -36,6 +34,17 @@ class LWAutomation:
         self._attacks_this_turn += 1
         x, y = _attack_coords[attack_num]
         self._relative_click(x, y, 30, 1, 2)
+
+    def _format_output_string(self):
+        res = header.format(self._title)
+        for string in self._result:
+            res = res + "\n" + string
+        return res
+
+    def create_script(self, script_path="script.ahk"):
+        result = self._format_output_string()
+        with open(script_path, "w") as file:
+            file.write(result)
 
 
 _mesurements_taken_x = 960.
