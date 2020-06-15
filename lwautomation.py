@@ -8,6 +8,10 @@ class LWAutomation:
         self._spells_this_turn = 0
         self._attacks_this_turn = 0
 
+    @property
+    def result(self):
+        return self._result
+
     def _click(self, x, y, radius, min_time, max_time):
         self._result.append(f"RRclick({x}, {y}, {radius})")
         self._result.append(f"randsleep({min_time}, {max_time})")
@@ -54,6 +58,32 @@ class LWAutomation:
         min += (self._spells_this_turn + max_spells_expected) * 10  # wait for all spells
         max = min * 1.2
         self._sleep(min, max)
+
+    def loop(self, n):
+        return _Loop(n, self)
+
+
+class _SyntaxOperation():
+    def __init__(self, target: LWAutomation):
+        self._target = target
+        self._start_pos = len(target.result) + 1
+
+    def __enter__(self):
+        pass
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        for i in range(self._start_pos, len(self._target.result)):
+            self._target.result[i] = "    " + self._target.result[i]
+        self._target.result.append("}")
+
+
+class _Loop(_SyntaxOperation):
+    def __init__(self, n, target: LWAutomation):
+        super().__init__(target)
+        self._n = n
+
+    def __enter__(self):
+        self._target.result.append(f"loop, {self._n} {{")
 
 
 _mesurements_taken_x = 960.
