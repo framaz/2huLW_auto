@@ -114,19 +114,19 @@ You can now run "myscript.ahk" and see how it works.
 
 ## Reference
 
-#### use_spellcard(spellcard_num) — uses a spellcard on current char
+### use_spellcard(spellcard_num) — uses a spellcard on current char
 
 ![](.readme_pics/spellcards.jpg)
 
-#### use_attack(attack_num) — uses an attack on current char
+### use_attack(attack_num) — uses an attack on current char
 
 ![](.readme_pics/attacks.jpg)
 
-#### power_up(number_of_powerups) — use power up number_of_powerups times
+### power_up(number_of_powerups) — use power up number_of_powerups times
 
-#### graze(number_of_grazes) — use graze number_of_grazes times
+### graze(number_of_grazes) — use graze number_of_grazes times
 
-#### use_skills(skill_num1, skill_num2...) — use character skills skill_num1, skill_num2...
+### use_skills(skill_num1, skill_num2...) — use character skills skill_num1, skill_num2...
 
 Example: usage of left skills of left and middle characters:
 
@@ -134,15 +134,15 @@ Example: usage of left skills of left and middle characters:
 
 ![](.readme_pics/skill_skip.jpg)
 
-#### swap_char() — swaps out current character
+### swap_char() — swaps out current character
 
-#### end_turn(max_enemy_attacks, max_enemy_spells) — wait till the end of attacks
+### end_turn(max_enemy_attacks, max_enemy_spells) — wait till the end of attacks
 
 Always call it after your turn ended.
 
 Expect enemy to attack max_enemy_attacks times and use spells max_enemy_spells times.
 
-#### with automator.loop(n) — loops following commands n times
+### with automator.loop(n) — loops following commands n times
 
 Example:
 
@@ -154,5 +154,5 @@ automator.use_attack(1)
 
 The code will use left attack 3 times, but right attack only once.
 
-#### create_script(script_path=path) — saves result to path(path has to be with "")
+### create_script(script_path=path) — saves result to path(path has to be with "")
 
