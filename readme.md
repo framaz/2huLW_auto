@@ -133,7 +133,7 @@ Example: usage of left skills of left and middle characters:
 
 ```use_skills(0, 3)```
 
-![](readme_pics/skill_skip.jpg)
+![](readme_pics/skills.jpg)
 
 ### swap_char() — swaps out current character
 
