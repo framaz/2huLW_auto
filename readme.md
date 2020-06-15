@@ -39,14 +39,14 @@ You can use Pulover's Macro Creator to find the window's title of your emu.
 To run this script you should do the following:
 1. Turn on skill animation skipping(when in battle in menu)
 
-![](.readme_pics/skill_skip.jpg)
+![](readme_pics/skill_skip.jpg)
 2. Set the emu window at the size you want and measure it's width and height in 
 pixels with borders. To run the script without problems, you have to always keep 
 the window at the measured size.
 Advice: you can open something on a half of the screen, and fit the emu window
 to the other half of the screen.
 
-![](.readme_pics/measurement.jpg)
+![](readme_pics/measurement.jpg)
 
 ## Creating a script
 To create a script you should edit main.py file with any text redactor.
@@ -116,11 +116,11 @@ You can now run "myscript.ahk" and see how it works.
 
 ### use_spellcard(spellcard_num) — uses a spellcard on current char
 
-![](.readme_pics/spellcards.jpg)
+![](readme_pics/spellcards.jpg)
 
 ### use_attack(attack_num) — uses an attack on current char
 
-![](.readme_pics/attacks.jpg)
+![](readme_pics/attacks.jpg)
 
 ### power_up(number_of_powerups) — use power up number_of_powerups times
 
@@ -132,7 +132,7 @@ Example: usage of left skills of left and middle characters:
 
 ```use_skills(0, 3)```
 
-![](.readme_pics/skill_skip.jpg)
+![](readme_pics/skill_skip.jpg)
 
 ### swap_char() — swaps out current character
 
